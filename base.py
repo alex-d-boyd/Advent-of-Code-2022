@@ -14,6 +14,8 @@ def parse_args():
     args = parser.parse_args()
     return args
 
+def parse_input(inpt):
+    return
 
 
 if __name__ == '__main__':
