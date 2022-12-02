@@ -26,3 +26,6 @@ if __name__ == '__main__':
         in_file = Path('input.txt')
     puzzle_input = in_file.read_text(encoding='utf-8')
 
+    print('Part 1:')
+
+    print('Part 2:')
