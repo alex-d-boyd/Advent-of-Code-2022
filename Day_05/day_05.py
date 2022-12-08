@@ -2,7 +2,7 @@
 
 # Advent of Code
 # https://adventofcode.com/2022
-# Day 
+# Day 5: Supply Stacks
 
 import argparse
 import copy
@@ -15,7 +15,7 @@ Step = namedtuple('Step', 'qty src dst')
 STEP_REX = re.compile(r'move (?P<qty>\d+) from (?P<src>\d+) to (?P<dst>\d+)')
 
 def parse_args():
-    parser = argparse.ArgumentParser(description='AoC 2022 Day XX')
+    parser = argparse.ArgumentParser(description='AoC 2022 Day 05')
     parser.add_argument('-t', '--test', help='use test data', action='store_true')
     args = parser.parse_args()
     return args

@@ -12,7 +12,7 @@ from pathlib import Path
 PRIORITIES = dict(zip(string.ascii_letters, range(1,53)))
 
 def parse_args():
-    parser = argparse.ArgumentParser(description='AoC 2022 Day XX')
+    parser = argparse.ArgumentParser(description='AoC 2022 Day 03')
     parser.add_argument('-t', '--test', help='use test data', action='store_true')
     args = parser.parse_args()
     return args

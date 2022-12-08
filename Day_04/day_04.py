@@ -9,7 +9,7 @@ import argparse
 from pathlib import Path
 
 def parse_args():
-    parser = argparse.ArgumentParser(description='AoC 2022 Day XX')
+    parser = argparse.ArgumentParser(description='AoC 2022 Day 04')
     parser.add_argument('-t', '--test', help='use test data', action='store_true')
     args = parser.parse_args()
     return args

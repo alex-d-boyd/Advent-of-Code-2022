@@ -2,7 +2,7 @@
 
 # Advent of Code
 # https://adventofcode.com/2022
-# Day 
+# Day 6: Tuning Trouble
 
 import argparse
 
@@ -10,7 +10,7 @@ from collections import deque
 from pathlib import Path
 
 def parse_args():
-    parser = argparse.ArgumentParser(description='AoC 2022 Day XX')
+    parser = argparse.ArgumentParser(description='AoC 2022 Day 06')
     parser.add_argument('-t', '--test', help='use test data', action='store_true')
     args = parser.parse_args()
     return args
