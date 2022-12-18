@@ -8,10 +8,14 @@ import argparse
 
 from pathlib import Path
 
+import pyperclip
+
 def parse_args():
     parser = argparse.ArgumentParser(description='AoC 2022 Day 14')
     parser.add_argument('-t', '--test', help='use test data', action='store_true')
     parser.add_argument('-v', '--visualise', help='print visualisation',
+                        action='store_true')
+    parser.add_argument('-c', '--copy', help='copy visualisation to clipboard',
                         action='store_true')
     args = parser.parse_args()
     return args
@@ -68,28 +72,35 @@ def drop_from(x, y, rock, sand, floor):
         drop_from(x+dx, y+1, rock, sand, floor)
     sand.add((x, y))
 
-def visualise(rock, sand, floor=None):
+def visualise(rock, sand, floor=None, copy=False):
     impassable = rock.union(sand)
     min_x = min(impassable, key = lambda p: p[0])[0]
     max_x = max(impassable, key = lambda p: p[0])[0] + 1
     min_y = 0
     max_y = max(impassable, key = lambda p: p[1])[1] + 1
+    output = []
     if floor is not None:
         min_x -= 2
         max_x += 2
         max_y = floor
     for y in range(min_y, max_y):
+        outline = ''
         for x in range(min_x, max_x):
             if (x, y) in rock_points:
-                print('#', end='')
+                outline += '#'
             elif (x, y) in sand_points:
-                print('o', end='')
+                outline += 'o'
             else:
-                print('.', end='')
-        print()
+                outline += '.'
+        output.append(outline)
+        if not copy:
+            print(outline)
     if floor is not None:
-        print('#' * (max_x - min_x))
-    print()
+        output.append('#' * (max_x - min_x))
+        if not copy:
+            print('#' * (max_x - min_x))
+    if copy:
+        pyperclip.copy('\n'.join(output))
 
 
 if __name__ == '__main__':
@@ -106,13 +117,13 @@ if __name__ == '__main__':
     while (rp := rest_point(500, 0, rock_points, sand_points)) is not None:
         sand_points.add(rp)
     print(len(sand_points))
-    if args.visualise:
-        visualise(rock_points, sand_points)
+    if args.visualise or args.copy:
+        visualise(rock_points, sand_points, copy=args.copy)
     
     print('Part 2:')
     sand_points = set()
     floor = max(rock_points, key = lambda p: p[1])[1] + 2
     drop_from(500, 0, rock_points, sand_points, floor)
     print(len(sand_points))
-    if args.visualise:
-        visualise(rock_points, sand_points, floor=floor)
+    if args.visualise or args.copy:
+        visualise(rock_points, sand_points, floor=floor, copy=args.copy)
